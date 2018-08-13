@@ -1,3 +1,4 @@
+"""Defining input class."""
 import sys
 import termios
 import tty
@@ -19,7 +20,25 @@ class Get:
         return ch
 
 
-def input_to(getch):
+class AlarmException(Exception):
+    """Handling alarm exception."""
+
+    pass
+
+
+def alarmHandler(signum, frame):
+    """Handling timeouts."""
+    raise AlarmException
+
+
+def input_to(getch, timeout=0.1):
     """Taking input from user."""
-    text = getch()
-    return text
+    signal.signal(signal.SIGALRM, alarmHandler)
+    signal.setitimer(signal.ITIMER_REAL, timeout)
+    try:
+        text = getch()
+        signal.alarm(0)
+        return text
+    except AlarmException:
+        signal.signal(signal.SIGALRM, signal.SIG_IGN)
+        return None
