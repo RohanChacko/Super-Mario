@@ -1,61 +1,64 @@
 import os
 import sys
 import time
-from input import Get,input_to
-from creator import grid_bg, grid_print, cur_x, cur_y
-from generator import gen_engine, pillar_update, cloud_engine, cloud_update
+from input import Get, input_to
+from creator import grid_bg, grid_print
+from classes import *
 from colorama import *
+from generator import *
 
-init()
 
+while m.level!= '1' and m.level != '2' and m.level != '3':
+    print("Input level of difficulty required [1, 2, 3]")
+    m.level = input()
+
+m.level = int(m.level)
 getch = Get()
+p.pillar_print()
+p.bridge_print()
+p.cloud_print()
+m.mario_print()
+
 grid_print()
-jump = 0
-def mario_move(input, input2):
-
-    if input == 'd':
-        pillar_update(1, input2)
-        cloud_update(1, input2)
-        grid_bg(1, 0)
-
-    elif input == 'a':
-        pillar_update(0, input2)
-        cloud_update(0, input2)
-        grid_bg(-1, 0)
-
-    elif input == 'w':
-        pillar_update(0, input2)
-        cloud_update(0, input2)
-        grid_bg(2, input2)
-    else:
-        pass
 
 while True:
     input = input_to(getch)
 
+    move_1 = 0
+    move_2 = 0
+
     if input is not None:
 
-        os.system('clear')
-
-        if input == 'q':
-            os.system('clear')
+        if input == 'q' or m.score == 30 and m.level == 3:
+            print(Fore.RESET + Style.RESET_ALL+"\t \t \t \t YOU SCORED: "+str(m.score)+ " | GAME OVER")
+            os.system('aplay -q smb_gameover.wav&')
             sys.exit()
 
         elif input == 'w':
+            move_1 = 2
             jump_input = input_to(getch)
 
             if jump_input == 'd':
-                mario_move(input,1)
+                move_2 = 1
             elif jump_input == 'a':
-                mario_move(input,-1)
+                move_2 = -1
             else:
-                mario_move(input,0)
-        elif input == 'd' or input == 'a':
-            gen_engine()
-            cloud_engine()
-            mario_move(input,0)
+                move_2 = 0
 
+        elif input == 'd':
+            move_1 = 1
+        elif input == 'a':
+            move_1 = -1
         else:
-            grid_print()
+            pass
 
-        time.sleep(0.0999)
+        if m.score >= 20 and m.level == 2:
+            os.system('aplay -q smb_flagpole.wav')
+            m.score = 0
+            m.level = 3
+        elif m.score >= 10 and m.level == 1:
+            os.system('aplay -q smb_flagpole.wav')
+            m.score = 0
+            m.level = 2
+    grid_bg(move_1, move_2)
+    time.sleep(0.02)
