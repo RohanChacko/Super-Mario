@@ -31,7 +31,7 @@ while True:
 
         if input == 'q' or m.score == 30 and m.level == 3:
             print(Fore.RESET + Style.RESET_ALL+"\t \t \t \t YOU SCORED: "+str(m.score)+ " | GAME OVER")
-            os.system('aplay -q smb_gameover.wav&')
+            os.system('aplay -q sounds/smb_gameover.wav&')
             sys.exit()
 
         elif input == 'w':
@@ -53,11 +53,11 @@ while True:
             pass
 
         if m.score >= 20 and m.level == 2:
-            os.system('aplay -q smb_flagpole.wav')
+            os.system('aplay -q sounds/smb_flagpole.wav')
             m.score = 0
             m.level = 3
         elif m.score >= 10 and m.level == 1:
-            os.system('aplay -q smb_flagpole.wav')
+            os.system('aplay -q sounds/smb_flagpole.wav')
             m.score = 0
             m.level = 2
     grid_bg(move_1, move_2)

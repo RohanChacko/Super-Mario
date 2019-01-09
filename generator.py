@@ -204,7 +204,7 @@ class Print_Fn(Gen_Col):
 
 class Update_Fn:
     """UPDATES ALL THE X, Y COORDINATES OF ALL OBJECTS"""
-    
+
     def coin_update(self, move_1, move_2):
 
         del_coins=[]
@@ -297,7 +297,7 @@ class Update_Fn:
                     m.cur_y = m.cur_y - 12
                     if m.life == 0:
                         print(Fore.RESET + Style.RESET_ALL+"\t \t \t \t \tGAME OVER")
-                        os.system('aplay -q smb_mariodie.wav&')
+                        os.system('aplay -q sounds/smb_mariodie.wav&')
                         sys.exit()
                     return 1
 
@@ -306,7 +306,7 @@ class Update_Fn:
                     m.cur_y = m.cur_y - 12
                     if m.life == 0:
                         print(Fore.RESET + Style.RESET_ALL+"\t \t \t \t \tGAME OVER")
-                        os.system('aplay -q smb_mariodie.wav&')
+                        os.system('aplay -q sounds/smb_mariodie.wav&')
                         sys.exit()
                     return 1
 

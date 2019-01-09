@@ -146,7 +146,7 @@ def coin_catch(move):
     for coin in range(len(o.live_coins)):
         if m.cur_y - m.step >= 20 and m.cur_y - m.step - 4 <= 20 and m.cur_x + move <= o.live_coins[coin] and m.cur_x +move+ 6 >= o.live_coins[coin]:
             m.score+=1
-            os.system('aplay -q smb_coin.wav&')
+            os.system('aplay -q sounds/smb_coin.wav&')
             o.grid[20][o.live_coins[coin]][0] = ' '
             del o.live_coins[coin]
             break
@@ -216,14 +216,14 @@ def alien_lower():
 
 def grid_bg(move_1, move_2):
     """DECIDES WHICH FUNCTION TO CALL WHEN INPUT IS RECEIVED"""
-    
+
     m.step = 3
 
     if m.on_air == 1:
         jumper(m.past_step)
     elif move_1 == 2 and m.on_air == 0:
         m.past_step = move_2
-        os.system('aplay -q smb_jump-small.wav&')
+        os.system('aplay -q sounds/smb_jump-small.wav&')
         jumper(m.past_step)
 
     else:
