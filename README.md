@@ -27,7 +27,7 @@ D - MOVE RIGHT
 ## Play the game
 ``` python3 main.py ```
 
-## File structure
+## Directory structure
 ```
 ├── classes.py  
 ├── collision.py  
