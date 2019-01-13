@@ -51,3 +51,7 @@ D - MOVE RIGHT
 * Level is increased based on the score attained
 * Mario has 3 lives to start with
 * Once a final score is reached in the final level, game exits
+
+## License
+The MIT License https://rohanc.mit-license.org/
+Copyright &copy; 2019 Rohan Chacko <rohanchacko007@gmail.com>
